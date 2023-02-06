@@ -30,13 +30,15 @@ int main(int argc, char *argv[])
     {
         if (polyC[i] == 0)
             continue;
-        if (anyPrinted)
+
+        if (polyC[i] > 0)
         {
-            if (polyC[i] > 0)
+            if (anyPrinted)
                 printf(" + ");
-            else
-                printf(" - ");
         }
+        else
+            printf(" - ");
+
         printf("%dx**%d", abs(polyC[i]), i);
         anyPrinted = 1;
     }

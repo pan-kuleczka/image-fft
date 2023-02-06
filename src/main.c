@@ -25,12 +25,23 @@ int main(int argc, char *argv[])
 
     int *polyC = multiplyPolynomials(degA, polyA, degB, polyB);
     printf(u8"Wynik to:\n");
+    int anyPrinted = 0;
     for (int i = (degA + degB - 1) - 1; i >= 0; --i)
     {
-        printf("%dx**%d", polyC[i], i);
-        if (i != 0)
-            printf(" + ");
+        if (polyC[i] == 0)
+            continue;
+        if (anyPrinted)
+        {
+            if (polyC[i] > 0)
+                printf(" + ");
+            else
+                printf(" - ");
+        }
+        printf("%dx**%d", abs(polyC[i]), i);
+        anyPrinted = 1;
     }
+    if (!anyPrinted)
+        printf("0");
     printf("\n");
 
     free(polyA);
